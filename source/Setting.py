@@ -25,13 +25,23 @@
 # 	class
 # }
 
-import os
+import os,time
+import re
+import cx_Oracle
+#import svnconfig
+# import pandas as pd
+
+os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
+# defaultencoding = 'utf8'
+
+logs = []
 
 setting={
     'svn':r'C:\Program Files\TortoiseSVN\bin',#svn的程序所在路径
     'url':'https://192.168.57.209/fund/dept2/Evaluation2.6/估值V2.6/Release/基金3.0版本',#svn地址
     'dist':u'D:\\Evaluation2.6\\估值V2.6\\Release\\基金3.0版本',#目标地址
-    'closeOption': ' /closeonend:1'
+    'closeOption': ' /closeonend:1',
+    'logFile': 'D:\git\SvnToOracleUpdateServer\source\logFile.txt' #　log文件放置位置
     #'interval':15 #更新时间
 }
 
@@ -41,19 +51,88 @@ setting={
 # /closeonend:3如果没有错误、冲突和合并，会自动关闭
 # /closeonend:4如果没有错误、冲突和合并，会自动关闭
 
-class list_dir:
+class list_dir:#递归查询当前目录下的所有目录，对地址进行递归查询出所有的svn本地目录生成一个list
     d = ''
     res = ''
-    def __init__(self,dir):
+    edition_num = []
+    task = {'版本': '', '版本号': '', '本地目录': '', 'svn目录': ''}
+    tasks = []
+    def __init__(self, dir):
         self.d = dir
 
-    def work_dir(self):
+    def work_dir(self):#查出所有的版本
          for root, dirs, files in os.walk(self.d):
-            print('\n========================================')
-            print("root : {0}".format(root))
-            print("dirs : {0}".format(dirs))
-            print("files : {0}".format(files))
+             for dir in dirs:
+                 if re.compile('FD20[0-9]{6}-[A-Za-z]').match(dir) :
+                     them = re.findall('FD20[0-9]{6}',dir)
+                     it = re.findall('-[A-Za-z][0-9]*',dir)
+                     it = it[0].strip('-')
+                     url = setting['url']+'/'+them[0]+'/Patch/'+dir
+                     self.Append_task(dir,it,root+'\\'+dir,url)
+         return self.tasks
 
+
+    def Append_task(self,a,b,c,d):#自增序列
+        self.task['版本']=a
+        self.task['版本号']=b
+        self.task['本地目录']=c
+        self.task['svn目录']=d
+        self.tasks.append(dict(self.task))
+        return self.task
+
+
+
+class svn:
+    def svn_update(self,dist_lists):
+        for dist in dist_lists:
+            cmd = 'TortoiseProc.exe /command:update /path ' + dist[2] + setting['closeOption']
+            # 记录下更新的时间
+            log_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+            log = 'Execute ' + cmd + " --- Time " + log_time + '\n'
+            logs.append(log)
+
+            #   执行更新   （这里后面还需要加上对更新失败的处理）
+            update_result = os.system(cmd)
+
+            #  更新完毕，添加成功与否的log
+            if update_result == 0:
+                log = 'SUCCESS: update ' + dist[2] + ' success' + '\n'
+            else:
+                log = 'FAIL: update ' + dist[2] + ' fail' + '\n'
+            logs.append(log)
+
+            # 将log写入给定的log file
+
+        with open(setting['logFile'], 'a', encoding="utf-8") as f:
+            logs.append("******************************************************** next update\r\n")
+            for l in logs:
+                f.write(l)
+        logs.clear()
+
+
+
+#主程序入口
 if __name__ == '__main__':
-    d = list_dir(setting['dist'])
-    d.work_dir()
+
+    conn = cx_Oracle.connect('FD20180816C/FD20180816C@localhost/orcl')  # 用自己的实际数据库用户名、密码、主机ip地址 替换即可
+    curs = conn.cursor()
+
+    if 1==2 :#执行插入语句
+        d = list_dir(setting['dist'])
+        tasks = d.work_dir()
+        for task in tasks :
+            sql = 'insert into Tupdate (edition,tversion, dir, turl) select \'{0}\',\'{1}\',\'{2}\',\'{3}\' from' \
+                  ' dual t where not exists( select 1 from tupdate t where \'{0}\' = t.edition)'.format(task['版本'],task['版本号'],task['本地目录'],task['svn目录'])
+            print(sql)
+            rr = curs.execute(sql)
+
+    if 1==1 :#执行查询语句
+        v_l_mode = 1#1：更新rn且查询
+        return_str = '                  '
+        rs1 =  curs.var(cx_Oracle.CURSOR)
+        zz = curs.callproc('searchversion', [v_l_mode,return_str,rs1])
+        s = svn()
+        s.svn_update(zz[2])
+    conn.commit()
+    curs.close()
+    conn.close()
