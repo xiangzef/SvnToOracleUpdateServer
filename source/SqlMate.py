@@ -72,8 +72,8 @@ def hsDatabaseUpgrade(strFolder):
     f_sqlplus_bat(inStrUser, inStrPwd, inStrDB, '2', strLocalFolder, '', '')
     f_sqlplus_bat(inStrUser, inStrPwd, inStrDB, '3', strLocalFolder, '', '')
     # p=subprocess.Popen(strLocalFolder + 'HsTools.bat', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell = True)
-    # os.system('chcp 65001')
-    os.system(strLocalFolder + 'HsTools.bat')#这个是执行bat脚本的语句
+    os.system('chcp 65001')
+    os.system(strLocalFolder + 'HsTools.bat')
     f_anti_compile_list(inStrUser)
     # os.system('more ' + strLocalFolder + 'anti_compile_list.txt')
     # os.system('pause')
@@ -100,8 +100,8 @@ def f_ret_sop_user(sPath):
 
 
 def f_anti_compile_list(inStrUser):
-    f = open('D:\git\SvnToOracleUpdateServer\output\{0}.log'.format([inStrUser]), "r" , encoding='utf-8')
-    f1 = open('D:\git\SvnToOracleUpdateServer\output\{0}anti_compile_list.txt'.format([inStrUser]), "w", encoding='utf-8')
+    f = open('D:\git\SvnToOracleUpdateServer\output\{0}.log'.format(inStrUser), "r" , encoding='utf-8')
+    f1 = open('D:\git\SvnToOracleUpdateServer\output\{0}anti_compile_list.txt'.format(inStrUser), "w", encoding='utf-8')
     # f1 = open(sPath+'ErrorLine.txt',"w+")
     data = f.readlines()
 
@@ -163,7 +163,7 @@ def sqlplusexec(sUser, sPwd, sDB, sTag, sPath, sType):
 def f_sqlplus_bat(sUser, sPwd, sDB, sType, sPath, sFileName, sName):
     sFirst = '''set define off; 
 set sqlblanklines on; 
-spool D:\Evaluation2.6\估值V2.6\Release\基金3.0版本\FD20170307\FD20170307-C32\Hsfa3.0_FD\HsTools.log; 
+spool D:\git\SvnToOracleUpdateServer\output\{0}.log; 
 
 '''
     sEnd = '''
@@ -206,19 +206,18 @@ echo *　　　　　★★★                                                  
 echo *　　　　　　★	                                                            *
 echo *****************************************************************************
 echo 即将导入到【{0}】
-pause >nul
 sqlplus {1}/{2}@{3} @{4}
 type D:\git\SvnToOracleUpdateServer\output\{1}.log|find /i /n "ora"|more >ErrorLine.txt
 cls
 echo ************************************************************
 echo *                                                          *
-echo *                                                         *
+echo *                                                          *
 echo *                       错误信息列示                       *
 echo *                                                          *
 echo *                                                          *
 echo ************************************************************
 echo 按任意键显示脚本执行的错误信息
-pause >nul
+
 more ErrorLine.txt
 echo ************************************************************
 echo *                                                          *
@@ -227,12 +226,12 @@ echo *                      数据库升级完毕                      *
 echo *                                                          *
 echo *                                                          *
 echo ************************************************************
-'''
+'''#pause >nul
     if (sType == '0'):
         # 0.头sql文件
         sFile = sPath + 'HsTools.sql'
         f = open(sFile, 'w')  # r只读 w可写 a追加
-        f.write(sFirst)
+        f.write(sFirst.format(sUser))
         f.close()
     elif (sType == '1'):
         # 1.追加sql内容文件
@@ -252,7 +251,7 @@ echo ************************************************************
         fff.close()
     elif (sType == '2'):
         sFile = sPath + 'HsTools.sql'
-        f = open(sFile, 'a', encoding='utf-8')  # r只读 w可写 a追加
+        f = open(sFile, 'a',encoding='utf-8')  # r只读 w可写 a追加
         f.write(sEnd)
         f.close()
     elif (sType == '3'):
