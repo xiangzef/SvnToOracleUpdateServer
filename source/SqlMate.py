@@ -73,8 +73,8 @@ def hsDatabaseUpgrade(strFolder):
     f_sqlplus_bat(inStrUser, inStrPwd, inStrDB, '3', strLocalFolder, '', '')
     # p=subprocess.Popen(strLocalFolder + 'HsTools.bat', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell = True)
     # os.system('chcp 65001')
-    # os.system(strLocalFolder + 'HsTools.bat')
-    f_anti_compile_list(strLocalFolder)
+    os.system(strLocalFolder + 'HsTools.bat')#这个是执行bat脚本的语句
+    f_anti_compile_list(inStrUser)
     # os.system('more ' + strLocalFolder + 'anti_compile_list.txt')
     # os.system('pause')
     # f_del_cache_file(strLocalFolder + 'anti_compile_list.txt', '0') 文件删除
@@ -99,9 +99,9 @@ def f_ret_sop_user(sPath):
     return sRet
 
 
-def f_anti_compile_list(sPath):
-    f = open(sPath + 'HsTools.log', "r" , encoding='utf-8')
-    f1 = open(sPath + 'anti_compile_list.txt', "w", encoding='utf-8')
+def f_anti_compile_list(inStrUser):
+    f = open('D:\git\SvnToOracleUpdateServer\output\{0}.log'.format([inStrUser]), "r" , encoding='utf-8')
+    f1 = open('D:\git\SvnToOracleUpdateServer\output\{0}anti_compile_list.txt'.format([inStrUser]), "w", encoding='utf-8')
     # f1 = open(sPath+'ErrorLine.txt',"w+")
     data = f.readlines()
 
@@ -208,11 +208,11 @@ echo ***************************************************************************
 echo 即将导入到【{0}】
 pause >nul
 sqlplus {1}/{2}@{3} @{4}
-type D:\Evaluation2.6\估值V2.6\Release\基金3.0版本\FD20170307\FD20170307-C32\Hsfa3.0_FD\HsTools.log|find /i /n "ora"|more >ErrorLine.txt
+type D:\git\SvnToOracleUpdateServer\output\{1}.log|find /i /n "ora"|more >ErrorLine.txt
 cls
 echo ************************************************************
 echo *                                                          *
-echo *                                                          *
+echo *                                                         *
 echo *                       错误信息列示                       *
 echo *                                                          *
 echo *                                                          *
@@ -252,7 +252,7 @@ echo ************************************************************
         fff.close()
     elif (sType == '2'):
         sFile = sPath + 'HsTools.sql'
-        f = open(sFile, 'a',encoding='utf-8')  # r只读 w可写 a追加
+        f = open(sFile, 'a', encoding='utf-8')  # r只读 w可写 a追加
         f.write(sEnd)
         f.close()
     elif (sType == '3'):
