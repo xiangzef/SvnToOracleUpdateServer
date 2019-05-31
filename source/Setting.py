@@ -28,6 +28,7 @@
 import os,time
 import re
 import cx_Oracle
+import SqlMate
 #import svnconfig
 # import pandas as pd
 
@@ -41,7 +42,9 @@ setting={
     'url':'https://192.168.57.209/fund/dept2/Evaluation2.6/估值V2.6/Release/基金3.0版本',#svn地址
     'dist':u'D:\\Evaluation2.6\\估值V2.6\\Release\\基金3.0版本',#目标地址
     'closeOption': ' /closeonend:1',
-    'logFile': 'D:\git\SvnToOracleUpdateServer\source\logFile.txt' #　log文件放置位置
+    'logFile': 'D:\git\SvnToOracleUpdateServer\source\logFile.txt', #　log文件放置位置
+    'version': ['0307-D','0307-C','0307-I','0816-C'],
+    'versions': ['0307-C']
     #'interval':15 #更新时间
 }
 
@@ -84,23 +87,29 @@ class list_dir:#递归查询当前目录下的所有目录，对地址进行递�
 
 class svn:
     def svn_update(self,dist_lists):
+        i = 0
         for dist in dist_lists:
-            cmd = 'TortoiseProc.exe /command:update /path ' + dist[2] + setting['closeOption']
-            # 记录下更新的时间
-            log_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-            log = 'Execute ' + cmd + " --- Time " + log_time + '\n'
-            logs.append(log)
+            for version in setting['versions']:
+                if str(dist[2]).find(version) > 0:
+                    i+=1
+            if i >0 :
+                cmd = 'TortoiseProc.exe /command:update /path ' + dist[2] + setting['closeOption']
+                # 记录下更新的时间
+                log_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+                log = 'Execute ' + cmd + " --- Time " + log_time + '\n'
+                logs.append(log)
 
-            #   执行更新   （这里后面还需要加上对更新失败的处理）
-            update_result = os.system(cmd)
+                #   执行更新   （这里后面还需要加上对更新失败的处理）
+                update_result = os.system(cmd)
 
-            #  更新完毕，添加成功与否的log
-            if update_result == 0:
-                log = 'SUCCESS: update ' + dist[2] + ' success' + '\n'
-            else:
-                log = 'FAIL: update ' + dist[2] + ' fail' + '\n'
-            logs.append(log)
-
+                #  更新完毕，添加成功与否的log
+                if update_result == 0:
+                    log = 'SUCCESS: update ' + dist[2] + ' success' + '\n'
+                else:
+                    log = 'FAIL: update ' + dist[2] + ' fail' + '\n'
+                logs.append(log)
+                SqlMate.hsDatabaseUpgrade(dist[2])
+            i = 0
             # 将log写入给定的log file
 
         with open(setting['logFile'], 'a', encoding="utf-8") as f:

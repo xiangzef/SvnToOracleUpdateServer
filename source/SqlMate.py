@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-import sys, os, time
+import sys, os, time,subprocess
 
 # 1.Get SVN Code(In the building)
 # 0.Tools Setup(In the building)
@@ -46,25 +46,22 @@ def hsDatabaseUpgrade(strFolder):
     strLocalFolder = strLocalFolder + "\\Hsfa3.0_FD\\"
     # print("调试->找到目录:"+strLocalFolder)
     # 后期可以智能分解拆分找到用户名
-    inStrUser = input("请输入用户名(默认回车{0}):".format(sUser))
-    inStrPwd = input("请输入密码(默认回车{0}):".format(sUser))
-    inStrDB = input("请输入监听服务名(默认回车orcl):")
-    if (inStrUser == ''):
-        if (sUser.find('FD20180816') >= 0) or (sUser.find('Sources')) is True:
-            inStrUser = 'FD20180816C'
-        elif (sUser.find('I') >= 0) is True:
-            inStrUser = 'FD20170307A'
-        else:
-            inStrUser = sUser
-    if (inStrPwd == ''):
-        if (sUser.find('FD20180816') >= 0) or (sUser.find('Sources')) is True:
-            inStrPwd = 'FD20180816C'
-        elif (sUser.find('I') >= 0) is True:
-            inStrPwd = 'FD20170307A'
-        else:
-            inStrPwd = sUser
-    if (inStrDB == ''):
-        inStrDB = 'orcl'
+    # inStrUser = input("请输入用户名(默认回车{0}):".format(sUser))
+    # inStrPwd = input("请输入密码(默认回车{0}):".format(sUser))
+    # inStrDB = input("请输入监听服务名(默认回车orcl):")
+    if (sUser.find('FD20180816') >= 0) or (sUser.find('Sources')) is True:
+       inStrUser = 'FD20180816C'
+    elif (sUser.find('I') >= 0) is True:
+       inStrUser = 'FD20170307A'
+    else:
+       inStrUser = sUser
+    if (sUser.find('FD20180816') >= 0) or (sUser.find('Sources')) is True:
+       inStrPwd = 'FD20180816C'
+    elif (sUser.find('I') >= 0) is True:
+       inStrPwd = 'FD20170307A'
+    else:
+       inStrPwd = sUser
+    inStrDB = 'orcl'
     # 数据库升级
     f_sqlplus_bat(inStrUser, inStrPwd, inStrDB, '0', strLocalFolder, '', '')
     sqlplusexec(inStrUser, inStrPwd, inStrDB, '1', strLocalFolder, sType)
@@ -74,16 +71,18 @@ def hsDatabaseUpgrade(strFolder):
     sqlplusexec(inStrUser, inStrPwd, inStrDB, '5', strLocalFolder, sType)
     f_sqlplus_bat(inStrUser, inStrPwd, inStrDB, '2', strLocalFolder, '', '')
     f_sqlplus_bat(inStrUser, inStrPwd, inStrDB, '3', strLocalFolder, '', '')
-    os.system(strLocalFolder + 'HsTools.bat')
+    # p=subprocess.Popen(strLocalFolder + 'HsTools.bat', stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell = True)
+    # os.system('chcp 65001')
+    # os.system(strLocalFolder + 'HsTools.bat')
     f_anti_compile_list(strLocalFolder)
-    os.system('more ' + strLocalFolder + 'anti_compile_list.txt')
-    os.system('pause')
-    f_del_cache_file(strLocalFolder + 'anti_compile_list.txt', '0')
-    f_del_cache_file(strLocalFolder + 'HsTools.bat', '0')
-    f_del_cache_file(strLocalFolder + 'HsTools.txt', '0')
-    f_del_cache_file(strLocalFolder + 'HsTools.log', '0')
-    f_del_cache_file(strLocalFolder + 'HsTools.sql', '0')
-    f_del_cache_file(strLocalFolder + 'ErrorLine.txt', '0')
+    # os.system('more ' + strLocalFolder + 'anti_compile_list.txt')
+    # os.system('pause')
+    # f_del_cache_file(strLocalFolder + 'anti_compile_list.txt', '0') 文件删除
+    # f_del_cache_file(strLocalFolder + 'HsTools.bat', '0') 文件删除
+    # f_del_cache_file(strLocalFolder + 'HsTools.txt', '0')文件删除
+    # f_del_cache_file(strLocalFolder + 'HsTools.log', '0')文件删除
+    # f_del_cache_file(strLocalFolder + 'HsTools.sql', '0')文件删除
+    # f_del_cache_file(strLocalFolder + 'ErrorLine.txt', '0')文件删除
 
 
 def f_ret_sop_user(sPath):
@@ -101,8 +100,8 @@ def f_ret_sop_user(sPath):
 
 
 def f_anti_compile_list(sPath):
-    f = open(sPath + 'HsTools.log', "r+")
-    f1 = open(sPath + 'anti_compile_list.txt', "w+")
+    f = open(sPath + 'HsTools.log', "r" , encoding='utf-8')
+    f1 = open(sPath + 'anti_compile_list.txt', "w", encoding='utf-8')
     # f1 = open(sPath+'ErrorLine.txt',"w+")
     data = f.readlines()
 
@@ -164,7 +163,7 @@ def sqlplusexec(sUser, sPwd, sDB, sTag, sPath, sType):
 def f_sqlplus_bat(sUser, sPwd, sDB, sType, sPath, sFileName, sName):
     sFirst = '''set define off; 
 set sqlblanklines on; 
-spool HsTools.log; 
+spool D:\Evaluation2.6\估值V2.6\Release\基金3.0版本\FD20170307\FD20170307-C32\Hsfa3.0_FD\HsTools.log; 
 
 '''
     sEnd = '''
@@ -209,7 +208,7 @@ echo ***************************************************************************
 echo 即将导入到【{0}】
 pause >nul
 sqlplus {1}/{2}@{3} @{4}
-type HsTools.log|find /i /n "ora"|more >ErrorLine.txt
+type D:\Evaluation2.6\估值V2.6\Release\基金3.0版本\FD20170307\FD20170307-C32\Hsfa3.0_FD\HsTools.log|find /i /n "ora"|more >ErrorLine.txt
 cls
 echo ************************************************************
 echo *                                                          *
@@ -238,28 +237,28 @@ echo ************************************************************
     elif (sType == '1'):
         # 1.追加sql内容文件
         try:
-            with open(sFileName, 'rb') as f:
+            with open(sFileName, 'r') as f:
                 sTxt = f.read()
         except NameError as result:
             print('出错:{0}'.format(result))
         sFile = sPath + 'HsTools.sql'
         # 写入回车,防止串行
-        ff = open(sFile, 'a')
+        ff = open(sFile, 'a', encoding='utf-8')
         ff.write("\r\nprompt '**************************{0}**************************';\r\n".format(sName))
         ff.close()
         # r只读 w可写 a追加
-        fff = open(sFile, 'ab')
+        fff = open(sFile, 'a', encoding='utf-8')
         fff.write(sTxt)
         fff.close()
     elif (sType == '2'):
         sFile = sPath + 'HsTools.sql'
-        f = open(sFile, 'a')  # r只读 w可写 a追加
+        f = open(sFile, 'a',encoding='utf-8')  # r只读 w可写 a追加
         f.write(sEnd)
         f.close()
     elif (sType == '3'):
         # 传递进来的必须为最后带\的目录
         sFile = sPath + 'HsTools.bat'
-        f = open(sFile, 'w')  # r只读 w可写 a追加
+        f = open(sFile, 'w', encoding='utf-8')  # r只读 w可写 a追加
         f.write(strUpdate.format(sUser, sUser, sPwd, sDB, sPath + 'HsTools.sql'))
         f.close()
 
