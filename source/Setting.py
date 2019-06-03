@@ -47,7 +47,7 @@ setting={
     'closeOption': ' /closeonend:1',
     'logFile': 'D:\git\SvnToOracleUpdateServer\source\logFile.txt', #　log文件放置位置
     'version': ['0307-D','0307-C','0307-I','0816-C'],
-    'versions': ['0307-D','0307-C','0816-C']
+    'versions': ['0307-A','0307-C','0307-D','0816-C']
     #'interval':15 #更新时间
 }
 
@@ -124,8 +124,7 @@ class svn:
 def do1():
     conn = cx_Oracle.connect('FD20180816C/FD20180816C@localhost/orcl')  # 用自己的实际数据库用户名、密码、主机ip地址 替换即可
     curs = conn.cursor()
-
-    if 1==2 :#执行插入语句
+    if 1==1 :#执行插入语句
         d = list_dir(setting['dist'])
         tasks = d.work_dir()
         for task in tasks :
@@ -144,4 +143,8 @@ def do1():
     conn.commit()
     curs.close()
     conn.close()
-    server.run()
+    server.run() #发送邮件
+
+#主程序入口
+if __name__ == '__main__':
+    schedule.every(4).hours.do(do1)

@@ -11,8 +11,13 @@ import re
 localtime = time.asctime( time.localtime(time.time()) )
 
 my_sender = '13212778536@163.com'  # 发件人邮箱账号
+my_sender1 = '13212778536@163.com'  # 发件人邮箱账号
+
 my_pass = 'xiangzef1234'  # 发件人邮箱密码
 my_user = '414395321@qq.com'  # 收件人邮箱账号，我这边发送给自己
+# my_sender = 'xiangzf22027'  # 发件人邮箱账号
+# my_sender1 = 'xiangzf22027@hundsun.com'  # 发件人邮箱账号
+ # my_user = 'xiangzf22027@hundsun.com'  # 收件人邮箱账号，我这边发送给自己
 
 d = '..\output\\'
 class MailServer:
