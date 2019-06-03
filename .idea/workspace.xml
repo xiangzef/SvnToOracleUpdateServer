@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ee7a1d4-3e7d-4674-8b88-b76e3811794a" name="Default Changelist" comment="">
+    <list default="true" id="2ee7a1d4-3e7d-4674-8b88-b76e3811794a" name="Default Changelist" comment="2019年6月3日14:09:11&#10;√发送邮件&#10;&#10;&#10;2019年6月3日11:20:55&#10;'utf-8' codec can't decode byte 0xb9错误 原因是open 的 encoding 应该= 'gb18030'&#10;&#10;write的encoding = ubf - 8&#10;目标&#10;→√整理报错&#10;&#10;×发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/OutPutServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/OutPutServer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/Setting.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/Setting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/SqlMate.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/SqlMate.py" afterDir="false" />
     </list>
     <ignored path="source/searchversion.~prc" />
     <ignored path="source/logFile.txt" />
@@ -15,14 +16,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/SvnToOracleUpdateServer$Setting.coverage" NAME="Setting Coverage Results" MODIFIED="1559531891150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source" />
+    <SUITE FILE_PATH="coverage/SvnToOracleUpdateServer$Setting.coverage" NAME="Setting Coverage Results" MODIFIED="1559544165474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source" />
+    <SUITE FILE_PATH="coverage/SvnToOracleUpdateServer$OutPutServer.coverage" NAME="OutPutServer Coverage Results" MODIFIED="1559541694349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/source" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/Setting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1124">
+            <state relative-caret-position="257">
               <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
               <folding>
                 <element signature="e#309#323#0" expanded="true" />
@@ -32,55 +34,74 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/FD20170307CErrorLine.txt">
+        <entry file="file://$PROJECT_DIR$/source/SqlMate.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3057">
+              <caret line="238" column="12" selection-start-line="238" selection-start-column="12" selection-end-line="239" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/searchversion.prc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-247">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/SvnUpdate.py">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/OutPutServer.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/SqlMate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="173" column="5" lean-forward="true" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
+            <state relative-caret-position="-593">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <folding>
+                <element signature="e#43#57#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/FD20180816Canti_compile_list.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/HsTools.log">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/FD20180816CErrorLine.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/FD20180816C.log">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/source/logFile.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1400">
+              <caret line="56" selection-start-line="56" selection-end-line="56" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/codecs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="321" selection-start-line="321" selection-end-line="321" />
+            <state relative-caret-position="7975">
+              <caret line="320" selection-start-line="320" selection-end-line="320" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/FD20170307D.log">
+        <entry file="file://$PROJECT_DIR$/output/FD20170307Canti_compile_list.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/FD20170307Danti_compile_list.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/FD20170307CErrorLine.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -126,10 +147,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/source/SvnUpdate.py" />
-        <option value="$PROJECT_DIR$/source/OutPutServer.py" />
         <option value="$PROJECT_DIR$/readme.txt" />
-        <option value="$PROJECT_DIR$/source/Setting.py" />
         <option value="$PROJECT_DIR$/source/SqlMate.py" />
+        <option value="$PROJECT_DIR$/source/OutPutServer.py" />
+        <option value="$PROJECT_DIR$/source/Setting.py" />
       </list>
     </option>
   </component>
@@ -189,7 +210,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Setting">
+    <configuration name="OutPutServer" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SvnToOracleUpdateServer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/source" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/source/OutPutServer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Setting" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SvnToOracleUpdateServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -215,6 +258,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.Setting" />
+        <item itemvalue="Python.OutPutServer" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +276,8 @@
       <workItem from="1559181910641" duration="30479000" />
       <workItem from="1559283946206" duration="6498000" />
       <workItem from="1559293758323" duration="6274000" />
-      <workItem from="1559524137547" duration="3979000" />
+      <workItem from="1559524137547" duration="8446000" />
+      <workItem from="1559542691248" duration="1758000" />
     </task>
     <task id="LOCAL-00001" summary="递归目录&#10;目标：&#10;未实现1 寻找有几条线 &#10;未实现2 寻找每条线的最大值目录">
       <created>1559186235514</created>
@@ -290,11 +335,25 @@
       <option name="project" value="LOCAL" />
       <updated>1559296981243</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="2019年6月3日11:20:55&#10;'utf-8' codec can't decode byte 0xb9错误 原因是open 的 encoding 应该= 'gb18030'&#10;&#10;write的encoding = ubf - 8&#10;目标&#10;→√整理报错&#10;&#10;×发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件">
+      <created>1559532139156</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1559532139156</updated>
+    </task>
+    <task id="LOCAL-00010" summary="2019年6月3日14:09:11&#10;√发送邮件&#10;&#10;&#10;2019年6月3日11:20:55&#10;'utf-8' codec can't decode byte 0xb9错误 原因是open 的 encoding 应该= 'gb18030'&#10;&#10;write的encoding = ubf - 8&#10;目标&#10;→√整理报错&#10;&#10;×发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件">
+      <created>1559542183909</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1559542183909</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48118000" />
+    <option name="totallyTimeSpent" value="54343000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -309,13 +368,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19029851" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1924307" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.35032538" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.3329718" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.22559653" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" visible="true" weight="0.26030368" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989339" weight="0.329718" />
@@ -382,7 +441,9 @@
     <MESSAGE value="2019年5月31日15:42:19&#10;目标&#10;→整理报错发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件" />
     <MESSAGE value="2019年5月31日16:02:01 检查一个错误&#10;目标&#10;→整理报错发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件" />
     <MESSAGE value="2019年5月31日16:02:01 检查一个错误/os.system('chcp 65001')导致又出现编码问题&#10;目标&#10;→整理报错发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="2019年5月31日16:02:01 检查一个错误/os.system('chcp 65001')导致又出现编码问题&#10;目标&#10;→整理报错发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件" />
+    <MESSAGE value="2019年6月3日11:20:55&#10;'utf-8' codec can't decode byte 0xb9错误 原因是open 的 encoding 应该= 'gb18030'&#10;&#10;write的encoding = ubf - 8&#10;目标&#10;→√整理报错&#10;&#10;×发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件" />
+    <MESSAGE value="2019年6月3日14:09:11&#10;√发送邮件&#10;&#10;&#10;2019年6月3日11:20:55&#10;'utf-8' codec can't decode byte 0xb9错误 原因是open 的 encoding 应该= 'gb18030'&#10;&#10;write的encoding = ubf - 8&#10;目标&#10;→√整理报错&#10;&#10;×发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019年6月3日14:09:11&#10;√发送邮件&#10;&#10;&#10;2019年6月3日11:20:55&#10;'utf-8' codec can't decode byte 0xb9错误 原因是open 的 encoding 应该= 'gb18030'&#10;&#10;write的encoding = ubf - 8&#10;目标&#10;→√整理报错&#10;&#10;×发送邮件&#10;&#10;&#10;完成目标：&#10;√1递归目录&#10;&#10;√1 寻找有几条线 &#10;√2 寻找每条线的最大值目录&#10;&#10;√1 编写脚本&#10;√2 执行脚本&#10;√3 寻找错误&#10;&#10;解决问题 ：&#10;执行bat和sql文件的编码不一致&#10;解决方法 ， setting→file encodings 修改编码全部为utf-8 然后 所有的open函数加encoding = 'utf-8'&#10;&#10;未解决问题 ：&#10;bat文件执行之后  hstools.log和error.txt文件是在项目目录下的  &#10;需要单独安排一下 &#10;&#10;bat脚本的语句也需要改  改成指定目录下生成日志和报错文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -397,72 +458,77 @@
           <line>242</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/source/OutPutServer.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="a['版本']" language="Python" />
-        <watch expression="it[0]" language="Python" />
-        <watch expression="sys.getdefaultencoding()" language="Python" />
-        <watch expression="rs1.values[0].description[0][1].bufferSize" />
-        <watch expression="zz[2]" language="Python" />
-        <watch expression="sFirst" language="Python" />
         <watch expression="f.read().encode(encoding='utf-8')" language="Python" />
-        <watch expression="f.read().__str__()" language="Python" />
-        <watch expression="sFileName.find('PKG_PUBFUN.pck')" language="Python" />
-        <watch expression="sFileName.find('PKG_PUBFUN.PCK')" language="Python" />
+        <watch expression="d+file" language="Python" />
+        <watch expression="re.findall('FD201[0-9]*[A-Za-z]',file)" language="Python" />
+        <watch expression="file.find('txt')" language="Python" />
+        <watch expression="open(d+file, 'r', encoding='utf-8')" language="Python" />
+        <watch expression="output" language="Python" />
+        <watch expression="msg" language="Python" />
+        <watch expression="MIMEText" language="Python" />
+        <watch expression="msg" />
+        <watch expression="smtplib.SMTP_SSL(&quot;smtp.hundsun.com&quot;, 25)" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>sFileName.find('PKG_PUBFUN.pck')</expression-string>
+        <expression-string>smtplib.SMTP_SSL(&quot;smtp.hundsun.com&quot;, 25)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sFileName.find('PKG_PUBFUN.PCK')</expression-string>
+        <expression-string>smtplib.SMTP_SSL(&quot;mail.hundsun.com&quot;, 25)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>f.read().__str__()</expression-string>
+        <expression-string>MIMEText</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>f.read()</expression-string>
+        <expression-string>msg</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>f.read().encode(encoding='utf-8')</expression-string>
+        <expression-string>output</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sFirst</expression-string>
+        <expression-string>output +f</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>zz[2]</expression-string>
+        <expression-string>open(d+file, 'r', encoding='utf-8')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sys.getdefaultencoding()</expression-string>
+        <expression-string>file.find('txt')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>it[0]</expression-string>
+        <expression-string>re.findall('FD201[0-9]*[A-Za-z]',file)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>a['版本']</expression-string>
+        <expression-string>d+file</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -512,13 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
           <caret line="323" column="30" selection-start-line="323" selection-start-column="30" selection-end-line="323" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/re.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="222" column="39" selection-start-line="222" selection-start-column="39" selection-end-line="222" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -575,22 +634,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/logFile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1400">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="750">
           <caret line="30" column="1" selection-start-line="8" selection-end-line="30" selection-end-column="1" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/SvnUpdate.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/ntpath.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -599,17 +648,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/os.py">
+    <entry file="file://$PROJECT_DIR$/output/FD20170307C.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9275">
-          <caret line="373" selection-start-line="373" selection-end-line="373" />
+        <state relative-caret-position="350">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/FD20170307D.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/FD20180816CErrorLine.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/FD20180816Canti_compile_list.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/FD20180816C.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/FD20170307DErrorLine.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/ErrorLine.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/HsTools.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/email/mime/text.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/_bootlocale.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="250">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/os.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="336" selection-start-line="336" selection-end-line="336" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/email/message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3500">
+          <caret line="150" selection-start-line="150" selection-end-line="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/smtplib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25200">
+          <caret line="1019" selection-start-line="1019" selection-end-line="1019" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6775">
+          <caret line="274" selection-start-line="274" selection-end-line="274" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7975">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
         </state>
       </provider>
     </entry>
@@ -623,55 +742,50 @@
     <entry file="file://$PROJECT_DIR$/output/FD20170307Danti_compile_list.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/FD20170307C.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/FD20170307D.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/FD20180816C.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="321" selection-start-line="321" selection-end-line="321" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/FD20180816CErrorLine.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/FD20180816Canti_compile_list.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/HsTools.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/FD20170307CErrorLine.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/OutPutServer.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/Setting.py">
+    <entry file="file://$PROJECT_DIR$/source/logFile.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1124">
-          <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
-          <folding>
-            <element signature="e#309#323#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1400">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/SqlMate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="173" column="5" lean-forward="true" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
+        <state relative-caret-position="-3057">
+          <caret line="238" column="12" selection-start-line="238" selection-start-column="12" selection-end-line="239" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/SvnUpdate.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/searchversion.prc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-247">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/OutPutServer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-593">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding>
+            <element signature="e#43#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/Setting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+          <folding>
+            <element signature="e#309#323#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

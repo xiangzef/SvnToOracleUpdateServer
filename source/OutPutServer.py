@@ -12,7 +12,7 @@ localtime = time.asctime( time.localtime(time.time()) )
 
 my_sender = '13212778536@163.com'  # 发件人邮箱账号
 my_pass = 'xiangzef1234'  # 发件人邮箱密码
-my_user = '13212778536@163.com'  # 收件人邮箱账号，我这边发送给自己
+my_user = '414395321@qq.com'  # 收件人邮箱账号，我这边发送给自己
 
 d = '..\output\\'
 class MailServer:
@@ -29,11 +29,17 @@ class MailServer:
         try:
             for root, dirs, files in os.walk(self.d):
                 for file in files:
-                    output = output + re.findall('FD201[0-9]*[A-Za-z]', file)[0]+'\\r'
-                    if file.find('txt') > 0:
+                    if file.find('Canti_compile_list.txt') > 0:
+                        output = output + re.findall('FD201[0-9]*[A-Za-z]', file)[0] + '编译错误：\r\n'
                         with open(d+file, 'r', encoding='utf-8') as f:
                             txt = f.read()
-                        output = output + txt
+                        output = output + txt+'\r\n'
+                    if file.find('ErrorLine.txt') > 0:
+                        output = output + re.findall('FD201[0-9]*[A-Za-z]', file)[0] + '  SQL执行报错：\r\n'
+                        with open(d+file, 'r', encoding='utf-8') as f:
+                            txt = f.read()
+                        output = output + txt+'\r\n'
+            print(output)
 
             msg = MIMEText( output, 'plain', 'utf-8')
             msg['From'] = formataddr(["FromRobot", my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
@@ -44,7 +50,6 @@ class MailServer:
             server.login(my_sender, my_pass)  # 括号中对应的是发件人邮箱账号、邮箱密码
             server.sendmail(my_sender, [my_user, ], msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
             server.quit()  # 关闭连接
-            print(output)
         except Exception:  # 如果 try 中的语句没有执行，则会执行下面的 ret=False
             ret = False
         return ret
@@ -55,3 +60,8 @@ class MailServer:
             print("邮件发送成功")
         else:
             print("邮件发送失败")
+
+def run():
+    sentmail = MailServer('')
+    result = sentmail.mail()
+    sentmail.Result(result)
