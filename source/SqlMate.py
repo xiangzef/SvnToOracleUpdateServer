@@ -207,7 +207,7 @@ echo *　　　　　　★	                                                    
 echo *****************************************************************************
 echo 即将导入到【{0}】
 sqlplus {1}/{2}@{3} @{4}
-type D:\git\SvnToOracleUpdateServer\output\{1}.log|find /i /n "ora"|more >ErrorLine.txt
+type D:\git\SvnToOracleUpdateServer\output\{1}.log|find /i /n "ora"|more >D:\git\SvnToOracleUpdateServer\output\{1}ErrorLine.txt
 cls
 echo ************************************************************
 echo *                                                          *
@@ -218,7 +218,7 @@ echo *                                                          *
 echo ************************************************************
 echo 按任意键显示脚本执行的错误信息
 
-more ErrorLine.txt
+more D:\git\SvnToOracleUpdateServer\output\{1}ErrorLine.txt
 echo ************************************************************
 echo *                                                          *
 echo *                                                          *
@@ -236,7 +236,7 @@ echo ************************************************************
     elif (sType == '1'):
         # 1.追加sql内容文件
         try:
-            with open(sFileName, 'r') as f:
+            with open(sFileName, 'r', encoding='gb18030' ) as f:
                 sTxt = f.read()
         except NameError as result:
             print('出错:{0}'.format(result))
@@ -245,13 +245,19 @@ echo ************************************************************
         ff = open(sFile, 'a', encoding='utf-8')
         ff.write("\r\nprompt '**************************{0}**************************';\r\n".format(sName))
         ff.close()
+        if sFileName.find('pck') < 0:
+            # r只读 w可写 a追加
+            fff = open(sFile, 'a', encoding='utf-8')
+            fff.write(sTxt)
+            fff.close()
+        else:
         # r只读 w可写 a追加
-        fff = open(sFile, 'a', encoding='utf-8')
-        fff.write(sTxt)
-        fff.close()
+            fff = open(sFile, 'a', encoding='utf-8')
+            fff.write(sTxt)
+            fff.close()
     elif (sType == '2'):
         sFile = sPath + 'HsTools.sql'
-        f = open(sFile, 'a',encoding='utf-8')  # r只读 w可写 a追加
+        f = open(sFile, 'a', encoding='utf-8')  # r只读 w可写 a追加
         f.write(sEnd)
         f.close()
     elif (sType == '3'):

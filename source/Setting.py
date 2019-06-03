@@ -44,7 +44,7 @@ setting={
     'closeOption': ' /closeonend:1',
     'logFile': 'D:\git\SvnToOracleUpdateServer\source\logFile.txt', #　log文件放置位置
     'version': ['0307-D','0307-C','0307-I','0816-C'],
-    'versions': ['0816-C']
+    'versions': ['0307-D','0307-C','0816-C']
     #'interval':15 #更新时间
 }
 
