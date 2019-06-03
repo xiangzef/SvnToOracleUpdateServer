@@ -29,6 +29,9 @@ import os,time
 import re
 import cx_Oracle
 import SqlMate
+import schedule
+import time
+import datetime
 #import svnconfig
 # import pandas as pd
 import OutPutServer as server
@@ -118,11 +121,7 @@ class svn:
                 f.write(l)
         logs.clear()
 
-
-
-#主程序入口
-if __name__ == '__main__':
-
+def do1():
     conn = cx_Oracle.connect('FD20180816C/FD20180816C@localhost/orcl')  # 用自己的实际数据库用户名、密码、主机ip地址 替换即可
     curs = conn.cursor()
 
