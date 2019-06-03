@@ -31,7 +31,7 @@ import cx_Oracle
 import SqlMate
 #import svnconfig
 # import pandas as pd
-
+import OutPutServer
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
 # defaultencoding = 'utf8'
 
@@ -145,3 +145,6 @@ if __name__ == '__main__':
     conn.commit()
     curs.close()
     conn.close()
+    sentmail = OutPutServer.MailServer('')
+    result = sentmail.mail
+    sentmail.Result(result)
